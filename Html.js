@@ -46,18 +46,23 @@ class Html {
     }
 }
 
-let show = (eltId) => {
-    document.getElementById(eltId).style.display = ''
+let $ = (eltPointer) => {
+    if(eltPointer.substr(0,1) == '#') {
+        return document.getElementById(eltPointer.substr(1,eltPointer.length))
+    }
 }
-let hide = (eltId) => {
-    document.getElementById(eltId).style.display = 'none'
+let show = (eltPointer) => {
+    $(eltPointer).style.display = ''
 }
-let content = (eltId, content) => {
-    document.getElementById(eltId).innerHTML = content
+let hide = (eltPointer) => {
+    $(eltPointer).style.display = 'none'
 }
-let enable = (eltId) => {
-    document.getElementById(eltId).disabled = false
+let content = (eltPointer, content) => {
+    $(eltPointer).innerHTML = content
 }
-let disable = (eltId) => {
-    document.getElementById(eltId).disabled = true
+let enable = (eltPointer) => {
+    $(eltPointer).disabled = false
+}
+let disable = (eltPointer) => {
+    $(eltPointer).disabled = true
 }
