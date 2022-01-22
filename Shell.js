@@ -25,6 +25,8 @@ class Shell{
             html.parseTags(this)
             html.parseHtmlElements(this)
 
+            // todo trace visitor est lié à l'app et pas à Shelljs, il faudra déporter cela
+
             // trace visitor
             let promiseTraceVisitor = api.newPromise(apiVisitorAdd, 'POST', {
                 location: window.location.href,
@@ -36,6 +38,19 @@ class Shell{
                 isFrameOf: window.frameElement,
                 isFullScreen: window.fullScreen,
                 decalXY: window.screenX+'x'+window.screenY,
+            })
+            promiseTraceVisitor.catch((error) => {
+                if(error == 'NETWORK_OR_CORS_PROBLEM') {
+                    content('#errorCorsNetworkName', 'Expérience utilisateur')
+                    show('#errorCorsNetwork')
+                }
+                else{
+                    content('#errorApiGenericName', 'Expérience utilisateur')
+                    content('#errorApiGenericError', error)
+                    show('#errorApiGeneric')
+                }
+                disable('#cta_step_chx_date')
+                $('#cta_step_chx_date').title = 'Vous ne pouvez pas organiser de repas pour le moment / Service en dérangement'
             })
         }).catch((error) => {
             // todo gérer cas erreur
