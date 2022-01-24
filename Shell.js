@@ -1,6 +1,6 @@
 const fileName = 'Shell.js'
 
-const apiVisitorAdd = 'http://127.0.0.1:8000/visitors'
+const apiVisitorAdd = 'http://127.0.0.1:26002/visitors'
 
 const errorUrlExtNotFound = 'ERREUR [{fileName}]: L\'url "{url}" ne désigne pas un fichier valide. Impossible de déterminer l\'extension'
 const errorUrlExtNotManaged = 'ERREUR [{fileName}]: L\'extension de fichier "{ext}" n\est pas gérée'
