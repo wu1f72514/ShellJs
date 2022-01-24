@@ -47,8 +47,14 @@ class Html {
 }
 
 let $ = (eltPointer) => {
-    if(eltPointer.substr(0,1) == '#') {
+    if(typeof eltPointer === 'object'){
+        return eltPointer
+    }
+    else if(eltPointer.substr(0,1) === '#') {
         return document.getElementById(eltPointer.substr(1,eltPointer.length))
+    }
+    else if(eltPointer.substr(0,1) !== '#') {
+        return document.getElementsByTagName(eltPointer)
     }
 }
 let show = (eltPointer) => {
@@ -65,4 +71,15 @@ let enable = (eltPointer) => {
 }
 let disable = (eltPointer) => {
     $(eltPointer).disabled = true
+}
+let closest = (eltPointer, targetParent) => {
+    let parent = null
+    while(parent != $(targetParent) && $(targetParent) !== document.body){
+        parent = $(eltPointer).parent
+    }
+    if(parent === document.body){
+        return false
+    }
+    return parent
+
 }
